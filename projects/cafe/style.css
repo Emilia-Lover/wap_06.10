@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f7f2; /* 링크 페이지 특유의 따뜻한 연베이지 */
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333;
+}
+
+/* 헤더 */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #e8e5dd;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #2a241e;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 1rem;
+    color: #8a8175;
+    font-weight: 300;
+}
+
+/* 메인 섹션 */
+.menu-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.menu-section h2 {
+    font-size: 1.8rem;
+    text-align: left;
+    margin-bottom: 40px;
+    color: #3a322a;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f80404;
+    display: inline-block;
+}
+
+/* 그리드 배치 (한 줄에 4개씩 깔끔한 열 정렬) */
+.menu-item {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px; 
+}
+
+/* 개별 카드 감싸는 박스 */
+.card-wrap {
+    background-color: #fff;
+    border: 1px solid #e8e5dd;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
+}
+
+.card-wrap:hover {
+    transform: translateY(-4px);
+}
+
+/* 카드 내부 구조 정의 */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+/* 인포 박스 */
+.info-box {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+/* ★ Flexbox 반영: 메뉴명(왼쪽 끝)과 가격(오른쪽 끝) 정렬 ★ */
+.menu-title {
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: 15px;
+    
+    display: flex;                  /* Flexbox 레이아웃 적용 */
+    flex-direction: row;            /* 가로 방향 정렬 */
+    justify-content: space-between; /* 양 끝 정렬 (이름은 왼쪽, 가격은 오른쪽) */
+    align-items: center;            /* 글자 세로 정중앙 맞춤 */
+}
+
+/* 왼쪽 끝 메뉴명 스타일 */
+.title-txt {
+    font-weight: 700;
+}
+
+/* 오른쪽 끝 가격 스타일 */
+.menu-price {
+    font-size: 1.1rem;
+    color: #e90606; 
+    font-weight: 700;
+    /* 가격이 제목 라인으로 올라왔으므로, 기존 하단 배치용 속성들은 깔끔하게 지웠습니다 */
+}
+
+.menu-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    min-height: 54px; /* 글자 수 달라도 카드 높이 통일 */
+}
+
+/* 푸터 */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #f1952c;
+    font-size: 0.85rem;
+    margin-top: 60px;
+}
+
+/* 📱 화면이 좁아지는 태블릿이나 모바일을 위한 반응형 처리 */
+@media (max-width: 1024px) {
+    .menu-item {
+        grid-template-columns: repeat(2, 1fr); /* 화면이 작아지면 한 줄에 2개씩 */
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-item {
+        grid-template-columns: 1fr; /* 모바일에서는 한 줄에 1개씩 세로로 */
+    }
+}
+
+/* 깃 저장 코드순서 */
+/* git init */
+/* git add . */
+/* git commit -m "저장할것 이름" */
+/* git push origin main */

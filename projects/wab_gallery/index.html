@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나만의 사진 갤러리</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 히어로 섹션 -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>빛나는 순간들</h1>
+        <p>세상의 모든 아름다운 색채를 담았습니다.</p>
+        <a href="#gallery" class="btn">갤러리 구경하기</a>
+      </div>
+    </header>
+
+    <!-- 갤러리 섹션 (메인 콘텐츠) -->
+    <main id="gallery" class="gallery-section">
+      <h2>Featured Gallery</h2>
+      <p class="section-desc">가장 인기 있는 사진들을 확인해 보세요.</p>
+
+      <!-- CSS Grid가 적용될 컨테이너 -->
+      <div class="grid-container">
+        <!-- 이미지 카드 1 -->
+        <figure class="card">
+          <img
+            src="https://picsum.photos/id/1015/600/400"
+            alt="잔잔한 강물 풍경"
+          />
+          <figcaption>자연의 고요함</figcaption>
+        </figure>
+
+        <!-- 이미지 카드 2 -->
+        <figure class="card">
+          <img src="https://picsum.photos/id/1016/600/400" alt="광활한 산맥" />
+          <figcaption>끝없는 산맥</figcaption>
+        </figure>
+
+        <!-- 이미지 카드 3 -->
+        <figure class="card">
+          <img src="https://picsum.photos/id/1018/600/400" alt="숲 속 풍경" />
+          <figcaption>신비로운 숲</figcaption>
+        </figure>
+
+        <!-- 이미지 카드 4 -->
+        <figure class="card">
+          <img
+            src="https://picsum.photos/id/1022/600/400"
+            alt="밤하늘의 오로라"
+          />
+          <figcaption>밤하늘의 오로라</figcaption>
+        </figure>
+
+        <!-- 이미지 카드 5 -->
+        <figure class="card">
+          <img
+            src="https://picsum.photos/id/1029/600/400"
+            alt="뉴욕 센트럴 파크"
+          />
+          <figcaption>도시 속의 여유</figcaption>
+        </figure>
+
+        <!-- 이미지 카드 6 -->
+        <figure class="card">
+          <img src="https://picsum.photos/id/1036/600/400" alt="설원 풍경" />
+          <figcaption>겨울의 흔적</figcaption>
+        </figure>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <footer>
+      <p>&copy; 2026 My Gallery. HTML/CSS Practice.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+body {
+  margin: 0;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Gowun Dodum', sans-serif;
+  background-color: #f0f4f8; /* 베이스는 차분한 그레이시 블루 */
+  overflow: hidden;
+  position: relative;
+}
+
+/* 배경 컨테이너 */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(to bottom, #e6f2ff, #b3d9ff); /* 하늘색 그라데이션 */
+  overflow: hidden;
+}
+
+.snow-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 눈송이 기본 스타일 */
+.snow {
+  fill: white;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+/* 거리감에 따른 눈송이 크기와 속도 조절 */
+.snow--near {
+  animation-duration: 7s;
+  filter: blur(1px);
+}
+
+.snow--mid {
+  animation-duration: 12s;
+  opacity: 0.5;
+  filter: blur(2px);
+}
+
+.snow--far {
+  animation-duration: 18s;
+  opacity: 0.3;
+  filter: blur(3px);
+}
+
+/* 눈송이마다 시작 지연 시간을 다르게 해서 랜덤하게 내리는 느낌 부여 */
+.snow:nth-child(1) { left: 10%; animation-delay: 0s; }
+.snow:nth-child(2) { left: 30%; animation-delay: 2s; }
+.snow:nth-child(3) { left: 50%; animation-delay: 4s; }
+.snow:nth-child(4) { left: 70%; animation-delay: 1s; }
+.snow:nth-child(5) { left: 90%; animation-delay: 3s; }
+.snow:nth-child(6) { left: 20%; animation-delay: 5s; }
+.snow:nth-child(7) { left: 45%; animation-delay: 0.5s; }
+.snow:nth-child(8) { left: 65%; animation-delay: 2.5s; }
+.snow:nth-child(9) { left: 80%; animation-delay: 4.5s; }
+
+/* ❄️ 아래로 떨어지면서 좌우로 흔들리는 애니메이션 */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+  }
+  25% {
+    transform: translateY(25vh) translateX(15px);
+  }
+  50% {
+    transform: translateY(50vh) translateX(-15px);
+  }
+  75% {
+    transform: translateY(75vh) translateX(15px);
+  }
+  100% {
+    transform: translateY(110vh) translateX(0);
+  }
+}
+
+
+
+.bg-box{
+  background-color: rgb(170, 222, 247);
+  width: 350px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  text-align: center; /* 카드 안의 모든 요소를 가운데 정렬 */
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 350px 1fr; 
+  gap: 80px; 
+  align-items: stretch; /* ✨ 핵심: 왼쪽과 오른쪽의 높이를 동일하게 맞춤 */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 10;
+  position: relative;
+}
+
+/* 오른쪽 사진 그리드 간격도 살짝 조정 */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3열 */
+  grid-template-rows: repeat(2, 1fr);    /* 2행 */
+  gap: 20px; 
+}
+
+.item {
+  width: 100%;
+  /* height: 200px;  <-- ❌ 기존의 고정 높이는 삭제하거나 주석 처리하세요! */
+  height: 100%;      /* ✨ 부모(photo-grid)가 준 높이를 꽉 채웁니다 */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 사진이 일그러지지 않게 꽉 채움 */
+  transition: transform 0.4s ease;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%; /* 50%를 주면 완벽한 원이 됩니다 */
+  object-fit: cover;
+  margin-bottom: 30px;
+  border: 3px solid #fcfbb9; /* 테두리 색상 */
+}
+
+.name {
+  /* 글자 색상, 크기, 굵기를 변경해보세요 */
+  color: #1f2937;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.job-title {
+  /* 글자 색상을 회색 톤으로 바꾸고 살짝 띄워보세요 */
+  color: #c990bf; /* 메인 테마색인 초록색 사용 */
+  font-size: 14px;
+  letter-spacing: 2px; /* 자간(글자 사이 간격) 넓히기 */
+  margin-bottom: 20px;
+}
+
+.about-me {
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.6; /* 줄 간격 넓혀서 가독성 높이기 */
+  margin-bottom: 30px;
+  text-align: left; /* 본문만 왼쪽 정렬로 변경 */
+  word-break: keep-all; /* 단어 단위로 줄바꿈 (한글 가독성에 좋음) */
+}
+
+.contact-info {
+  display: inline-block;
+  background-color: #f3f4f6;
+  color: #374151;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin: 5px;
+  text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+/* 연락처에 마우스 올렸을 때 효과 */
+.contact-info:hover {
+  background-color: #10b981;
+  color: white;
+}
+
+/* ✨ 마우스를 올렸을 때 이미지 확대 효과 */
+.item:hover img {
+  transform: scale(1.1); /* 1.1배 커짐 (숫자를 키우면 더 많이 커져요) */
+}
+
+/* 추가 팁: 사진에 마우스를 올렸을 때 약간 밝아지거나 어두워지게 하고 싶다면? */
+.item:hover {
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2); /* 그림자도 살짝 더 진하게 */
+  border-color: rgb(42, 230, 255);        /* 초록 테두리 강조 */
+  box-shadow: 0 10px 28px rgb(131, 251, 255);  /* 초록 그림자 */
+}

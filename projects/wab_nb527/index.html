@@ -1,0 +1,57 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>자유 게시판 (HTML/CSS 레이아웃)</h2>
+        <div class="form-section">
+            <input type="search"  class="input-field" placeholder="검색어를 입력해 보세요...">
+
+            <input type="search"  class="input-field" placeholder="검색어를 입력해 보세요...">
+    
+            <textarea class="textarea-field" placeholder="내용을 입력하세요"></textarea>
+    
+            <input type="button" class="submit-btn" value="✉️게시글 등록" onclick="alert('게시글이 등록 되었습니다.')">
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>작성자</th>
+                    <th>제목 및 내용</th>
+                    <th>작성일</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>홍길동</td>
+                    <td class="content-cell">
+                        <strong>첫 번째 연습용 게시글입니다.</strong>
+                        <p>HTML과 CSS를 이용해 게시판의 틀을 잡는 조각 코드입니다.</p>
+                    </td>
+                    <td>2026. 05. 27.</td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+                <tr>
+                    <td>이순신</td>
+                    <td class="content-cell">
+                        <strong>질문 있습니다! style.css 연결이 안 돼요.</strong>
+                        <p>link 태그의 href 경로에 파일 이름이 올바르게 적혔는지 확인해 보세요.</p>
+                    </td>
+                    <td>2026. 05. 27.</td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+                <tr>
+                    <td>신사임당</td>
+                    <td class="content-cell">
+                        <strong>웹디자인 초보자를 위한 꿀팁 공유</strong>
+                        <p>테이블 레이아웃을 잡을 때는 border-collapse 속성이 필수입니다.</p>
+                    </td>
+                    <td>2026. 05. 26.</td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
