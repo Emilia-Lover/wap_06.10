@@ -2,139 +2,192 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Noto Sans KR", "Segoe UI", sans-serif;
   color: #333;
   line-height: 1.6;
+  background-color: #f0f2f5; /* 전체 배경색 */
+  min-height: 100vh;
 }
 
-/* --- 2. 히어로 섹션 (Hero Section) --- */
-.hero {
-  height: 100vh; /* 화면 전체 높이 꽉 채우기 */
-  /* 배경 이미지와 어두운 반투명 오버레이를 겹쳐서 글자가 잘 보이게 함 */
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://picsum.photos/id/1050/1920/1080") center/cover no-repeat;
+/* --- 2. 배경 눈 내리는 애니메이션 --- */
+.bg-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 콘텐츠 뒤로 보내기 */
+  background: linear-gradient(135deg, #1e2022, #3a3f47); /* 밤하늘 느낌의 배경 */
+  overflow: hidden;
+}
 
-  /* Flexbox를 사용해 내용을 정중앙에 배치 */
+.snow-container {
+  width: 100%;
+  height: 100%;
+}
+
+.snow {
+  fill: #ffffff;
+  animation: fall linear infinite;
+}
+
+/* 눈 떨어지는 애니메이션 속도 및 흐림 효과 */
+.snow--near { animation-duration: 7s; opacity: 0.9; }
+.snow--mid  { animation-duration: 12s; opacity: 0.6; }
+.snow--far  { animation-duration: 18s; opacity: 0.3; }
+
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(105vh); }
+}
+
+/* --- 3. 메인 컨테이너 (Flexbox 레이아웃) --- */
+.main-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  gap: 40px; /* 프로필과 프로젝트 사이 간격 */
+  align-items: flex-start;
+}
+
+/* --- 4. 왼쪽 프로필 카드 (.bg-box) --- */
+.bg-box {
+  flex: 1; /* 가로 비율 조절 */
+  min-width: 320px; /* 최소 너비 고정 */
+  background: rgba(255, 255, 255, 0.85); /* 반투명 흰색 배경 */
+  backdrop-filter: blur(10px); /* 배경 흐림 효과 */
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
-  color: #ffffff;
 }
 
-.hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 15px;
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  color: #ddd;
+.name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #222;
 }
 
-.btn {
+.job-title {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.about-me {
+  font-size: 0.9rem;
+  color: #444;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  word-break: keep-all; /* 한글 줄바꿈 자연스럽게 */
+}
+
+/* 연락처 버튼 스타일 */
+.contact-info {
   display: inline-block;
-  padding: 12px 30px;
-  background-color: #ff6b6b;
+  margin: 5px;
+  padding: 8px 16px;
+  background-color: #6c5ce7; /* 에밀리아가 연상되는 보라색 톤 💜 */
   color: white;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 0.9rem;
   border-radius: 50px;
-  transition: background-color 0.3s; /* 마우스 올릴 때 부드러운 색상 전환 */
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #ff4757;
+.contact-info:hover {
+  background-color: #5643fa;
+  transform: translateY(-2px);
 }
 
-/* --- 3. 갤러리 섹션 --- */
-.gallery-section {
-  padding: 80px 20px;
-  max-width: 1200px;
-  margin: 0 auto; /* 중앙 정렬 */
-  text-align: center;
-}
-
-.gallery-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.section-desc {
-  color: #666;
-  margin-bottom: 40px;
-}
-
-/* --- 4. CSS Grid 활용 (핵심) --- */
-.grid-container {
+/* --- 5. 오른쪽 프로젝트 그리드 (.photo-grid) --- */
+.photo-grid {
+  flex: 2; /* 프로필 카드보다 넓게 설정 */
   display: grid;
-  /* 1fr씩 3열 배치 (한 줄에 3개) */
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px; /* 이미지 사이의 간격 */
+  grid-template-columns: repeat(3, 1fr); /* 기본 3열 배치 */
+  gap: 20px;
 }
 
-/* 개별 이미지 카드 스타일 */
-.card {
+.item {
   background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden; /* 이미지가 둥근 모서리를 벗어나지 않게 함 */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
-  transition: transform 0.3s ease; /* 마우스 호버 효과를 위한 애니메이션 설정 */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-10px); /* 마우스를 올리면 위로 살짝 떠오름 */
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
-.card img {
+.item img {
   width: 100%;
-  height: 250px;
-  object-fit: cover; /* 이미지가 찌그러지지 않고 영역을 꽉 채우도록 설정 */
+  height: 200px;
+  object-fit: cover;
   display: block;
 }
 
-.card figcaption {
-  padding: 20px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #444;
-}
+/* --- 6. 핵심: 반응형 디자인 (Media Queries) --- */
 
-/* --- 5. 푸터 --- */
-footer {
-  text-align: center;
-  padding: 30px;
-  background-color: #222;
-  color: #fff;
-}
-
-/* --- 6. 반응형 디자인 (Media Queries) --- */
-
-/* 태블릿 화면 (가로 폭 900px 이하일 때 2열로 변경) */
-@media screen and (max-width: 900px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
+/* 💻 태블릿/노트북 화면 (1024px 이하): 프로젝트 그리드가 아래로 내려감 */
+@media (max-width: 1024px) {
+  .main-container {
+    flex-direction: column; /* 프로필이 위, 프로젝트가 아래로 배치 */
+    align-items: center;
   }
-  .hero h1 {
-    font-size: 2.8rem;
+
+  .bg-box {
+    width: 100%;
+    max-width: 600px; /* 화면이 커져도 프로필 카드가 너무 퍼지지 않게 제한 */
+  }
+
+  .photo-grid {
+    width: 100%;
+    max-width: 600px;
+    grid-template-columns: repeat(2, 1fr); /* 태블릿에서는 한 줄에 2개씩 */
   }
 }
 
-/* 모바일 화면 (가로 폭 600px 이하일 때 1열로 변경) */
-@media screen and (max-width: 600px) {
-  .grid-container {
-    grid-template-columns: 1fr;
+/* 📱 모바일 화면 (600px 이하): 프로젝트가 아래로 1열로 순서대로 정렬 */
+@media (max-width: 600px) {
+  .main-container {
+    padding: 20px 15px; /* 모바일 전용 여백 줄이기 */
+    gap: 25px; /* 프로필과 프로젝트 사이 간격 좁히기 */
   }
-  .hero h1 {
-    font-size: 2rem;
+
+  .bg-box {
+    max-width: 100%; /* 모바일 화면 꽉 채우기 */
   }
-  .hero p {
-    font-size: 1rem;
+
+  .photo-grid {
+    max-width: 100%;
+    grid-template-columns: 1fr; /* ⭐️ 핵심: 한 줄에 1개씩(1fr) 배치하여 위에서 아래로 순서대로 나열 */
+    gap: 15px; /* 이미지 사이의 위아래 간격 */
+  }
+  
+  .item img {
+    height: 180px; /* 모바일 화면에 맞게 이미지 높이 살짝 조절 */
   }
 }
